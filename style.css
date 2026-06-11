@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,115 +6,117 @@
 }
 
 body {
-    overflow: hidden;
-    background-color: #000;
-    font-family: sans-serif;
+    background-color: #121212; /* Sleek dark mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Prevent scrolling from confetti */
+    position: relative;
 }
 
-.scene {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
-}
-
-.scene.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-#scene1 {
-    background-image: url('assets/dark-sky-scene.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-#dark-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    transition: background-color 8s ease-in-out;
-    pointer-events: none; /* allow clicks to pass through to scene1 */
-    z-index: 10;
-}
-
-#dark-overlay.darken {
-    background-color: rgba(0, 0, 0, 0.85);
-}
-
-#fireflies-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.firefly {
-    position: absolute;
-    border-radius: 50%;
-    background-color: #00d4ff;
-    box-shadow: 0 0 5px 2px #00d4ff, 0 0 10px 4px #00aadd;
-    opacity: 0;
-    animation: flash 4s infinite, move 20s infinite linear;
-}
-
-@keyframes flash {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-}
-
-@keyframes move {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(20px, -20px); }
-    50% { transform: translate(-10px, 15px); }
-    75% { transform: translate(-25px, -10px); }
-    100% { transform: translate(0, 0); }
-}
-
-#scene2 {
-    background-image: url('assets/sinag_poster.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #000;
-}
-
+/* Confetti Container */
 #confetti-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 5;
-    pointer-events: none;
-    overflow: hidden;
+    pointer-events: none; /* Let clicks pass through to the image */
+    z-index: 1;
 }
 
+/* Individual Confetti Particle */
 .confetti {
     position: absolute;
-    top: -20px;
-    background-color: rgba(255, 235, 50, 0.45); /* Yellow, transparent so it's not distracting */
-    border-radius: 2px;
+    opacity: 0.6; /* Subtle opacity so it's not too distracting */
     animation: fall linear infinite;
+    top: -20px;
 }
 
+/* Animation for falling */
 @keyframes fall {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(-10vh) rotate(0deg);
     }
     100% {
-        transform: translateY(110vh) rotate(360deg);
+        transform: translateY(110vh) rotate(720deg);
     }
 }
+
+/* Main Content */
+.content {
+    z-index: 2;
+    padding: 2rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dynamic design element */
+.quote-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Intro Screen Styles */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 100;
+    overflow: hidden;
+    transition: opacity 3s ease-in-out;
+}
+
+#slideshow-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 4s ease-in-out;
+    filter: grayscale(30%);
+}
+
+.slideshow-image.active {
+    opacity: 1;
+}
+
+#black-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 3s ease-in-out;
+}
+
+

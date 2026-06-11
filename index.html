@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Scene</title>
+    <title>Quote Display</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <audio id="bg-music" src="music/suspenseful-music.mp3" loop></audio>
-    <div id="scene1" class="scene active">
-        <div id="fireflies-container"></div>
-        <div id="dark-overlay"></div>
+    <div id="intro-screen">
+        <div id="slideshow-container"></div>
     </div>
-    
-    <div id="scene2" class="scene">
-        <div id="confetti-container"></div>
-    </div>
+    <div id="black-overlay"></div>
+    <audio id="intro-audio" loop src="sounds/suspenseful_music.mp3"></audio>
 
+    <div id="confetti-container"></div>
+
+    <audio id="bg-audio" loop src="sounds/quote_sound.mp3"></audio>
+
+    <div class="content">
+        <img src="assets/quote.png" alt="Quote Image" class="quote-image">
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
